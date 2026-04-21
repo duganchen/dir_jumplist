@@ -1,0 +1,1 @@
+# fish_dir_jumplist

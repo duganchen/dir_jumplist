@@ -2,6 +2,7 @@ _jgc() {
 	# Garbage collect the list
 	# Requires Bash 4
 
+	local -a jumplist=()
 	if [[ -f ~/.dir_jumplist.txt ]]; then
 		# https://stackoverflow.com/a/30988704
 		mapfile -t jumplist <~/.dir_jumplist.txt

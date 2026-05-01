@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 _jgc() {
 	# Garbage collect the list
 

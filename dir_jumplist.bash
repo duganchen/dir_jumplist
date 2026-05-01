@@ -1,5 +1,6 @@
 _jgc() {
 	# Garbage collect the list
+	# Requires Bash 4
 
 	if [[ -f ~/.dir_jumplist.txt ]]; then
 		# https://stackoverflow.com/a/30988704

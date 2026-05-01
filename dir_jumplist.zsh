@@ -3,9 +3,9 @@ _jgc() {
 
 	if [[ -f ~/.dir_jumplist.txt ]]; then
 		# https://www.reddit.com/r/zsh/comments/tt6gm8/why_doesnt_zsh_have_an_equivalent_of_bashs/
-		jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
+		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
 
-		declare -a notfound
+		local -a notfound
 		for dir in $jumplist; do
 			if [[ ! -d $dir ]]; then
 				notfound+=($dir)

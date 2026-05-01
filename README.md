@@ -13,7 +13,7 @@ The functions are:
 * *j \[foo\]* gives you an [fzf](https://junegunn.github.io/fzf/) picker for the directory to jump to.
 Specifying foo will query for directories in the jumplist that match foo.
 
-The jumplist is stored in ~/.fish_dir_jumplist.txt and you can edit or delete
+The jumplist is stored in ~/.dir_jumplist.txt and you can edit or delete
 that file as needed.
 
 ## Workflow Notes

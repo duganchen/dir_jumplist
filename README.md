@@ -25,6 +25,26 @@ following as an additional directory changer:
 
     br --only-folders
 
+### Why I Wrote This
+
+I'm not a fan of frecency-based directory changers (fasd) because they're not
+predictable.
+
+I don't really like directory changers that hook into the cd command (zoxide,
+autojump, etc), because presenting me with my entire cd history gives me too
+much noise to sort through.
+
+I find directory-bookmarkers (bashmarks) too cumbersome and limited.
+
+I tried to get into the directory stacks provided by most shells. Couldn't do
+it.
+
+All of these have things I like. I want to explicitly add directories to the
+jumplist so that it contains only what I want. I want a menu to choose from
+directories in the jumplist. I want to easily go back and forth between
+directories in the jumplist. And I want to be able to easily edit the jumplist
+(this project just makes it easy to edit it with a text editor).
+
 ## Contributor's Guide
 
 I have fish-lsp and bash-language-server set to format-on-save. Please set up

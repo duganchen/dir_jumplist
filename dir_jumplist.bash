@@ -1,6 +1,7 @@
+# Requires BASH 4.2+
+
 _jgc() {
 	# Garbage collect the list
-	# Requires Bash 4
 
 	local -a jumplist=()
 	if [ -f ~/.dir_jumplist.txt ]; then
@@ -65,6 +66,34 @@ jn() {
 			fi
 		else
 			cd "${jumplist[0]}" || return
+		fi
+	fi
+}
+
+jp() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+		local -a jumplist=()
+		mapfile -t jumplist <~/.dir_jumplist.txt
+
+		local found=0
+		for i in "${!jumplist[@]}"; do
+			if [[ "$PWD" == "${jumplist[$i]}" ]]; then
+				found=1
+				break
+			fi
+		done
+
+		if [ $found -eq 1 ]; then
+			if [ "$i" -eq 0 ]; then
+				cd "${jumplist[-1]}" || return
+			else
+				i=$((i - 1))
+				cd "${jumplist[$i]}" || return
+			fi
+		else
+			cd "${jumplist[-1]}" || return
 		fi
 	fi
 }

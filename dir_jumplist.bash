@@ -17,3 +17,25 @@ _jgc() {
 		printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
 	fi
 }
+
+ja() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+		local -a jumplist=()
+		mapfile -t jumplist <~/.dir_jumplist.txt
+		local found=0
+		for dir in "${jumplist[@]}"; do
+			if [[ "$dir" == "$PWD" ]]; then
+				found=1
+				break
+			fi
+		done
+
+		if [[ found -eq 1 ]]; then
+			printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
+		else
+			echo "$PWD" >>~/.dir_jumplist.txt
+		fi
+	fi
+}

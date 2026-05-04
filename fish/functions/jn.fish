@@ -3,13 +3,7 @@ function jn
 
     if test -f ~/.dir_jumplist.txt
         set -l jumplist (cat ~/.dir_jumplist.txt)
-        for i in (seq (count $jumplist))
-            if test $jumplist[$i] = $PWD
-                set found
-                break
-            end
-        end
-        if set -q found
+        if contains $PWD jumplist
             if test $i -eq (count $jumplist)
                 cd $jumplist[1]
             else

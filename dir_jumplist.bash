@@ -97,3 +97,34 @@ jp() {
 		fi
 	fi
 }
+
+j() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+
+		local -a jumplist=()
+		mapfile -t jumplist <~/.dir_jumplist.txt
+
+		local found=0
+		local i=0
+
+		for i in "${!jumplist[@]}"; do
+			if [[ "$PWD" == "{jumplist[$i]}" ]]; then
+				unset "${jumplist[$i]}"
+				jumplist=("${jumplist[@]}")
+				break
+			fi
+		done
+
+		if [ ${#jumplist[@]} -gt 0 ]; then
+			local d
+			if [[ "$1" != "" ]]; then
+				d=$(printf "%s\n" "${jumplist[@]}" | fzf --scheme=path --select-1 --query="$1")
+			else
+				d=$(printf "%s\n" "${jumplist[@]}" | fzf --scheme=path --select-1 --query="$1")
+			fi
+			cd "$d" || return
+		fi
+	fi
+}

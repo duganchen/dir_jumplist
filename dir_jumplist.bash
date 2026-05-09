@@ -33,11 +33,12 @@ ja() {
 			fi
 		done
 
-		if [[ found -eq 1 ]]; then
-			printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
-		else
-			echo "$PWD" >>~/.dir_jumplist.txt
+		if [[ $found -eq 0 ]]; then
+			jumplist+=("$PWD")
 		fi
+		printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
+	else
+		echo "$PWD" >>~/.dir_jumplist.txt
 	fi
 }
 

@@ -21,3 +21,19 @@ _jgc() {
 		print -l $jumplist > ~/.dir_jumplist.txt
 	fi
 }
+
+ja() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
+		# Don't look at me; I just got this from AI
+		# It's 'if $jumplist does not contain $PWD'
+		if (( ${jumplist[(Ie)$PWD]} == 0 )); then
+			jumplist+=($PWD)
+		fi
+		print -l $jumplist > ~/.dir_jumplist.txt
+	else
+		echo $PWD >~/.dir_jumplist.txt
+	fi
+}

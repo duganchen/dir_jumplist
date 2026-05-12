@@ -55,3 +55,22 @@ jn() {
 		fi
 	fi
 }
+
+jn() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
+		index=${jumplist[(ie)$PWD]}	fi
+
+		if [[ $index -le ${#jumplist} ]]; then
+			if [ $index -eq 1]; then
+				cd $jumplist[${#jumplist}]
+			else
+				cd $jumplist[(( $index + 1 ))]
+			fi
+		else
+			cd $jumplist[1]
+		fi
+	fi
+}

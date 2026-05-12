@@ -37,3 +37,21 @@ ja() {
 		echo $PWD >~/.dir_jumplist.txt
 	fi
 }
+
+jn() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
+		index=${jumplist[(ie)$PWD]}
+		if [[ $index -le ${#jumplist} ]]; then
+			if (( $index == ${#jumplist} )); then
+				cd $jumplist[1]
+			else
+				cd $jumplist[(( $index + 1 ))]
+			fi
+		else
+			cd $jumplist[1]
+		fi
+	fi
+}

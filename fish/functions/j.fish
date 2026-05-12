@@ -2,7 +2,7 @@ function j
     _jgc
     if test -f ~/.dir_jumplist.txt
         set -l jumplist (cat ~/.dir_jumplist.txt)
-        if set -l index (contains -i $PWD $jumplist)
+        if set -l index (contains --index $PWD $jumplist)
             set -e jumplist[$index]
         end
         if test (count $jumplist) -gt 0

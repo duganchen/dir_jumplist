@@ -56,21 +56,48 @@ jn() {
 	fi
 }
 
-jn() {
+jp() {
 	_jgc
 
 	if [ -f ~/.dir_jumplist.txt ]; then
 		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
-		index=${jumplist[(ie)$PWD]}	fi
+		index=${jumplist[(ie)$PWD]}
 
 		if [[ $index -le ${#jumplist} ]]; then
-			if [ $index -eq 1]; then
+			if [ $index -eq 1 ]; then
 				cd $jumplist[${#jumplist}]
 			else
-				cd $jumplist[(( $index + 1 ))]
+				cd $jumplist[(( $index - 1 ))]
 			fi
 		else
-			cd $jumplist[1]
+			cd $jumplist[${#jumplist}]
+		fi
+	fi
+}
+
+j() {
+	_jgc
+
+	if [ -f ~/.dir_jumplist.txt ]; then
+
+		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
+		index=${jumplist[(ie)$PWD]}
+
+		if [[ $index -le ${#jumplist} ]]; then
+			jumplist[$index]=()
+		fi
+
+		if [[ ${#jumplist} -gt 0 ]]; then
+			local d=""
+			if [[ "$1" != "" ]]; then
+				d=$(print -l $jumplist | fzf --scheme=path --select-1 --query=$argv[1])
+			else
+				d=$(print -l $jumplist | fzf --scheme=path --select-1)
+			fi
+
+			if [[ -d "$d" ]]; then
+				cd "$d"
+			fi 
 		fi
 	fi
 }

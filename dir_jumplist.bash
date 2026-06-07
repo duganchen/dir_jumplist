@@ -111,7 +111,7 @@ j() {
 		local i=0
 
 		for i in "${!jumplist[@]}"; do
-			if [[ "$PWD" == "{jumplist[$i]}" ]]; then
+			if [[ "$PWD" == "${jumplist[$i]}" ]]; then
 				unset "${jumplist[$i]}"
 				jumplist=("${jumplist[@]}")
 				break

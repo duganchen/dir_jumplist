@@ -50,5 +50,5 @@ directories in the jumplist. And I want to be able to easily edit the jumplist
 
 ## Contributor's Guide
 
-I use fish-lsp and bash-language-server set to format and lint. Please set up
+To format and lint, I use fish-lsp and bash-language-server. Please set up
 your editor or IDE similarly.

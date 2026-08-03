@@ -8,9 +8,9 @@ function j
         if test (count $jumplist) -gt 0
             set -f d
             if count $argv >/dev/null
-                set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1 --query=$argv[1])
+                set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1 --exit-0 --query=$argv[1])
             else
-                set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1)
+                set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1 --exit-0)
             end
 
             if test -n "$d" && test -d $d

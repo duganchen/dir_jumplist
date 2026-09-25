@@ -10,6 +10,11 @@ function _jgc
                 set -e jumplist[$i]
             end
         end
-        printf "%s\n" $jumplist >~/.dir_jumplist.txt
+
+        if not set -q jumplist[1]
+            rm -f ~/.dir_jumplist.txt
+        else
+            printf "%s\n" $jumplist >~/.dir_jumplist.txt
+        end
     end
 end

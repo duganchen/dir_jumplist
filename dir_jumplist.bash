@@ -15,7 +15,11 @@ _jgc() {
 		done
 		jumplist=("${jumplist[@]}")
 
-		printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
+		if [ ${#jumplist[@]} -eq 0 ]; then
+			rm -f ~/.dir_jumplist.txt
+		else
+			printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
+		fi
 	fi
 }
 
@@ -112,7 +116,7 @@ j() {
 
 		for i in "${!jumplist[@]}"; do
 			if [[ "$PWD" == "${jumplist[$i]}" ]]; then
-				unset "${jumplist[$i]}"
+				unset "jumplist[$i]"
 				jumplist=("${jumplist[@]}")
 				break
 			fi
@@ -121,8 +125,6 @@ j() {
 		if [ ${#jumplist[@]} -gt 0 ]; then
 			local d
 			if [[ "$1" != "" ]]; then
-				d=$(printf "%s\n" "${jumplist[@]}" | fzf --scheme=path --exact --select-1 --exit-0 --query="$1")
-			else
 				d=$(printf "%s\n" "${jumplist[@]}" | fzf --scheme=path --exact --select-1 --exit-0 --query="$1")
 			fi
 			if [[ "$d" != "" && -d "$d" ]]; then

@@ -18,7 +18,11 @@ _jgc() {
 			jumplist=${jumplist:|notfound}
 		fi
 
-		print -l $jumplist > ~/.dir_jumplist.txt
+		if (( ${#jumplist} == 0 )); then
+			rm -f ~/.dir_jumplist.txt
+		else
+			print -l $jumplist > ~/.dir_jumplist.txt
+		fi
 	fi
 }
 
@@ -43,7 +47,7 @@ jn() {
 
 	if [ -f ~/.dir_jumplist.txt ]; then
 		local jumplist=("${(f)$(< ~/.dir_jumplist.txt)}")
-		index=${jumplist[(ie)$PWD]}
+		local index=${jumplist[(ie)$PWD]}
 		if [[ $index -le ${#jumplist} ]]; then
 			if (( $index == ${#jumplist} )); then
 				cd $jumplist[1]

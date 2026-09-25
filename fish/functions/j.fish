@@ -7,7 +7,7 @@ function j
         end
         if test (count $jumplist) -gt 0
             set -f d
-            if count $argv >/dev/null
+            if test (count $argv) -gt 0
                 set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1 --exit-0 --query=$argv[1])
             else
                 set -f d (printf "%s\n" $jumplist | fzf --scheme=path --exact --select-1 --exit-0)

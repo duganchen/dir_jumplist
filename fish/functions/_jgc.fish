@@ -11,10 +11,6 @@ function _jgc
             end
         end
 
-        if not set -q jumplist[1]
-            rm -f ~/.dir_jumplist.txt
-        else
-            printf "%s\n" $jumplist >~/.dir_jumplist.txt
-        end
+        printf "%s\n" $jumplist >~/.dir_jumplist.txt
     end
 end

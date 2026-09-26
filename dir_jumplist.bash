@@ -15,11 +15,7 @@ _jgc() {
 		done
 		jumplist=("${jumplist[@]}")
 
-		if [ ${#jumplist[@]} -eq 0 ]; then
-			rm -f ~/.dir_jumplist.txt
-		else
-			printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
-		fi
+		printf "%s\n" "${jumplist[@]}" >~/.dir_jumplist.txt
 	fi
 }
 

@@ -18,11 +18,7 @@ _jgc() {
 			jumplist=${jumplist:|notfound}
 		fi
 
-		if (( ${#jumplist} == 0 )); then
-			rm -f ~/.dir_jumplist.txt
-		else
-			print -l $jumplist > ~/.dir_jumplist.txt
-		fi
+		print -l $jumplist > ~/.dir_jumplist.txt
 	fi
 }
 
